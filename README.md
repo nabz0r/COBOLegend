@@ -1,97 +1,145 @@
-# COBOLegend
+```
+                                                                               
+  /$$$$$$   /$$$$$$  /$$$$$$$   /$$$$$$  /$$       /$$$$$$$$  /$$$$$$  /$$$$$$$$  /$$$$$$   /$$$$$$$ 
+ /$$__  $$ /$$__  $$| $$__  $$ /$$__  $$| $$      | $$_____/ /$$__  $$| $$_____/ /$$__  $$ /$$_____/
+| $$  \__/| $$  \ $$| $$  \ $$| $$  \ $$| $$      | $$      | $$  \__/| $$      | $$  \ $$|  $$$$$$ 
+| $$      | $$  | $$| $$$$$$$ | $$  | $$| $$      | $$$$$   | $$ /$$$$| $$$$$   | $$  | $$ \____  $$
+| $$      | $$  | $$| $$__  $$| $$  | $$| $$      | $$__/   | $$|_  $$| $$__/   | $$  | $$ /$$__  $$
+| $$    $$| $$  | $$| $$  \ $$| $$  | $$| $$      | $$      | $$  \ $$| $$      | $$  | $$|  $$$$$$$
+|  $$$$$$/|  $$$$$$/| $$$$$$$/|  $$$$$$/| $$$$$$$$| $$$$$$$$|  $$$$$$/| $$$$$$$$|  $$$$$$/ \_______/
+ \_______/ \______/ |_______/  \______/ |________/|________/ \______/ |________/ \______/          
+                                                                                                    
+```
 
-Un RPG textuel développé en COBOL, exploitant la richesse du langage pour créer une aventure rétro-futuriste.
+```
+   ___________________________________________________________________________________
+  |                                                                                   |
+  |     ####      /\                 _______________                                  |
+  |    ######    /  \      |\       |  MAINFRAME  |        O                         |
+  |   ###  ###  /____\     ||       |_____________|       /|\                        |
+  |  ###    ### |    |    _||_                           / | \                       |
+  | ########### |____|   /____\      /=\    /=\         __|__                        |
+  |                      |    |      |_|    |_|         |   |                        |
+  |      MONDE           |____|                         |___|                        |
+  |                                                                                   |
+  |___________________________________________________________________________________|
+          |                                    |                     |
+          |                                    |                     |
+          V                                    V                     V
+    EXPLORATION                           COMBAT                 QUÊTES
+```
 
-## Présentation
+# 👾 COBOLegend - L'Aventure RPG en COBOL 👾
 
-COBOLegend est un jeu de rôle textuel développé entièrement en COBOL, rendant hommage aux systèmes mainframe tout en proposant une expérience de jeu immersive. Ce projet démontre comment un langage historique comme COBOL peut être utilisé pour créer des applications interactives et ludiques.
+> *"Dans un monde où chaque IF/THEN/ELSE change le destin, seul un Héros du COBOL peut sauver MAINFRAME-TERRA!"*
 
-Le jeu se déroule dans un univers rétro-futuriste nommé MAINFRAME-TERRA, où les humains coexistent avec des technologies informatiques anciennes devenues conscientes. Le joueur incarne un héros du COBOL qui doit explorer ce monde, accomplir des quêtes et découvrir les secrets d'une mystérieuse cité futuriste.
+## 💻 Qu'est-ce que c'est ? 💻
 
-## Structure du projet
+COBOLegend est un RPG textuel rétro-futuriste qui prouve que même un langage de 1959 peut créer des aventures épiques! 
 
-- `MAIN-GAME.cbl` - Programme principal et boucle de jeu
-- `CHARACTER.cbl` - Gestion des personnages et attributs
-- `COMBAT.cbl` - Système de combat au tour par tour
-- `WORLD.cbl` - Génération et navigation du monde
-- `QUEST.cbl` - Gestion des quêtes et objectifs
-- `INVENTORY.cbl` - Système d'inventaire et d'objets
-- `UI.cbl` - Interface utilisateur et affichage
-- `UTILITIES.cbl` - Fonctions utilitaires diverses
-- `Makefile` - Facilite la compilation et l'exécution
+Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des monstres tangibles, et les compilateurs sont des artefacts magiques. Vous incarnez un héros du COBOL qui doit naviguer dans cet univers étrange pour découvrir les secrets d'une cité futuriste.
 
-## Caractéristiques
+## ⚙️ Composants Techniques ⚙️
 
-- Interface textuelle interactive avec encadrements et formatage stylisé
-- Système de combat stratégique au tour par tour
-- Progression de personnage avec attributs, compétences et niveaux
-- Monde ouvert à explorer avec différents types d'environnements
-- Quêtes narratives principales et secondaires
-- Système d'inventaire et d'équipement complet
-- Rencontres aléatoires basées sur l'environnement
-- Utilisation intensive des fonctionnalités modernes de COBOL
+```
++------------------+     +------------------+     +------------------+
+|   MAIN-GAME.cbl  |<--->|  CHARACTER.cbl  |<--->|    COMBAT.cbl   |
++------------------+     +------------------+     +------------------+
+         ^                       ^                       ^
+         |                       |                       |
+         v                       v                       v
++------------------+     +------------------+     +------------------+
+|    WORLD.cbl     |<--->|    QUEST.cbl    |<--->|  INVENTORY.cbl  |
++------------------+     +------------------+     +------------------+
+         ^                       ^                       ^
+         |                       |                       |
+         v                       v                       v
++------------------+     +------------------+     +------------------+
+|     UI.cbl       |<--->|  UTILITIES.cbl  |<--->|    Makefile     |
++------------------+     +------------------+     +------------------+
+```
 
-## Classes de personnage
+## 🕹️ Classes de Personnage 🕹️
 
-- **Programmeur** - Spécialiste de l'attaque, utilise des compétences de codage offensif
-- **Analyste** - Équilibré entre intelligence et défense, expert en résolution de problèmes
-- **Opérateur** - Robuste et puissant, se spécialise dans la force brute et la survie
+👨‍💻 **Programmeur** - Maîtrise le code comme arme et peut lancer des "boucles infinies" pour étourdir les ennemis!
 
-## Compilation et exécution
+👩‍💻 **Analyste** - Expert en débogage qui peut identifier les faiblesses de n'importe quel système hostile!
 
-### Prérequis
+👷 **Opérateur** - Gardien des mainframes, capable de résister aux crash systèmes les plus violents!
 
-- GnuCOBOL 2.0 ou supérieur
-- Make (pour utiliser le Makefile)
+## 🎮 Comment Jouer 🎮
 
 ### Compilation
 
-Utilisez le Makefile inclus pour compiler facilement le projet :
-
 ```bash
+# Exécutez cet incantation ancestrale pour assembler le jeu:
 make
-```
 
-Ou compilez manuellement avec :
-
-```bash
+# Ou pour les puristes:
 cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl
 ```
 
-### Exécution
-
-Après compilation, lancez le jeu avec :
+### Lancement
 
 ```bash
+# Invoquez le jeu:
 make run
-```
 
-Ou directement :
-
-```bash
+# Ou directement:
 ./cobolegend
 ```
 
-## Commandes de jeu
+### Commandes
 
-- **N, S, E, O** - Se déplacer dans les directions cardinales
-- **I** - Ouvrir l'inventaire
-- **C** - Afficher la fiche de personnage
-- **Q** - Journal de quêtes
-- **X** - Retourner au menu principal
+```
++-----------------------------------+
+| COMMANDES MAGIQUES DE NAVIGATION |
++-----------------------------------+
+| N, S, E, O - Déplacement         |
+| I - Inventaire                   |
+| C - Caractéristiques             |
+| Q - Quêtes                       |
+| X - Menu principal               |
++-----------------------------------+
+```
 
-## Développement futur
+## 👽 Ennemis Légendaires 👽
 
-- Sauvegarde et chargement de parties
-- Système de dialogue avec les PNJ
-- Davantage de quêtes et d'environnements
-- Système économique et marchands
-- Artisanat d'objets
+- **Loup Binaire** - Créature sauvage qui attaque par paires
+- **Golem de Données** - Monstre massif composé de dossiers corrigds
+- **Bug Fatal** - Apparition cauchemardesque qui fait planter les systèmes
+- **ABEND Spectre** - Entité qui termine anormalement toute chose qu'elle touche
 
-## Licence
+## 📜 Histoire de MAINFRAME-TERRA 📜
 
-Ce projet est sous licence MIT.
+Il y a longtemps, au temps des cartes perforées et des bandes magnétiques, les Anciens Programmeurs ont créé les premiers mainframes. Ces machines, alimentées par le langage mystique du COBOL, ont évolué au fil du temps jusqu'à former leur propre civilisation: MAINFRAME-TERRA.
 
-## À propos
+Aujourd'hui, une mystérieuse cité futuriste menace l'équilibre du monde avec sa technologie avancée. Seul un véritable Héros du COBOL peut découvrir ses secrets et sauver MAINFRAME-TERRA!
 
-COBOLegend a été créé pour démontrer les capacités du langage COBOL dans un contexte ludique et pour rendre hommage à l'héritage informatique que ce langage représente. Bien que COBOL soit rarement associé au développement de jeux, ce projet montre qu'avec un peu d'imagination, même les langages les plus orientés entreprise peuvent servir à créer des expériences divertissantes.
+## 🚀 Développement Futur 🚀
+
+- **Terminal Time Travel** - Voyagez entre différentes ères de l'informatique
+- **Multiplexeur de Dialogues** - Système de conversation avancé avec les PNJ
+- **Expansion VSAM** - Nouvelles zones à explorer
+- **JCL Crafting** - Créez vos propres objets grâce au Job Control Language
+
+## 🅰️ À Propos 🅰️
+
+COBOLegend est une preuve que même les langages de programmation les plus anciens peuvent être utilisés pour créer des expériences ludiques. Alors que les jeunes programmeurs courent après les derniers frameworks JavaScript, nous restons fidèles à l'esprit des pionniers de l'informatique. 
+
+Après tout, si COBOL fait encore tourner le monde bancaire, pourquoi ne pourrait-il pas faire tourner votre prochaine aventure?
+
+```
+                      FABRIQUÉ AVEC COBOL ET AMOUR
+            _____________________________________________________
+           /                                                     \
+          |    01 PROJET-LICENCE.                                 |
+          |       05 LICENCE-TYPE       PIC X(3) VALUE "MIT".     |
+          |       05 PERMISSIONS        PIC X(50) VALUE          |
+          |          "Utilisez, modifiez et partagez librement". |
+          |    01 REMERCIEMENTS         PIC X(24) VALUE          |
+          |       "Merci d'avoir joué !".                         |
+           \_____________________________________________________/
+```
+
+**Remarque**: Aucun mainframe n'a été blessé dans la création de ce jeu.
