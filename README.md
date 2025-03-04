@@ -57,12 +57,12 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 +--------------------+     +--------------------+     +------------------+
 | DIALOG-MULTIPLEXER |<--->|  UTILITIES.cbl    |<--->|     UI.cbl      |
 +--------------------+     +--------------------+     +------------------+
-                                    ^                        ^
-                                    |                        |
-                                    v                        v
-                           +--------------------+     +------------------+
-                           |TERMINAL-TIME-TRAVEL|     |  EASTER_EGGS.cbl|
-                           +--------------------+     +------------------+
+         ^                          ^                        ^
+         |                          |                        |
+         v                          v                        v
++--------------------+     +--------------------+     +------------------+
+|  JCL-CRAFTING.cbl  |<--->|TERMINAL-TIME-TRAVEL|     |  EASTER_EGGS.cbl|
++--------------------+     +--------------------+     +------------------+
 ```
 
 ## 🕹️ Classes de Personnage 🕹️
@@ -82,7 +82,7 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 make
 
 # Ou pour les puristes:
-cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl
+cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl JCL-CRAFTING.cbl
 ```
 
 ### Lancement
@@ -107,6 +107,7 @@ make run
 | Q - Quêtes                       |
 | T - Terminal temporel            |
 | P - Parler aux personnages       |
+| J - JCL Crafting                 |
 | X - Menu principal               |
 +-----------------------------------+
 ```
@@ -140,6 +141,23 @@ PNJ importants :
 - **Gardien Neumann** - Protecteur des portes de la cité futuriste
 - **Voyageur Temporel** - Mystérieux visiteur avec des connaissances du futur
 
+## 🔧 Système de Crafting JCL 🔧
+
+Créez des objets puissants grâce au système de crafting utilisant Job Control Language (JCL), le langage des mainframes ! Cette fonctionnalité unique vous permet :
+
+- D'écrire du véritable code JCL pour fabriquer des objets
+- D'utiliser les matériaux collectés lors de vos aventures
+- De combiner programmation et artisanat dans un seul processus
+- De créer des armes, armures et objets consommables uniques
+
+Chaque recette requiert une syntaxe JCL spécifique et des matériaux particuliers. Les objets créés reflètent la qualité de votre code et de vos ressources.
+
+Objets fabricables notables :
+- **Épée de Compilation** - Une lame qui compile les bugs en code fonctionnel
+- **Armure de Cache** - Protège contre les erreurs d'exécution
+- **Potion de Débogage** - Répare instantanément les dégâts subis
+- **Amulette de Traduction** - Permet de comprendre tous les langages de programmation
+
 ## 👽 Ennemis Légendaires 👽
 
 - **Loup Binaire** - Créature sauvage qui attaque par paires
@@ -150,7 +168,6 @@ PNJ importants :
 ## 🚀 Développement Futur 🚀
 
 - **Expansion VSAM** - Nouvelles zones à explorer avec des environnements uniques
-- **JCL Crafting** - Créez vos propres objets grâce au Job Control Language
 - **Système de sauvegarde** - Stockage et chargement de parties via des "checkpoints"
 
 ## 🅰️ À Propos 🅰️
