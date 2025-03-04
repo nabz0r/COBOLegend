@@ -8,7 +8,7 @@ COBC_FLAGS = -x -Wall
 EXE = cobolegend
 
 # Fichiers sources
-SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl
+SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl
 
 # Règle par défaut
 all: $(EXE)
@@ -25,4 +25,8 @@ clean:
 run: $(EXE)
 	./$(EXE)
 
-.PHONY: all clean run
+# Compilation du module Terminal Time Travel uniquement
+time-travel: TERMINAL-TIME-TRAVEL.cbl
+	$(COBC) $(COBC_FLAGS) -o terminal-time-travel $<
+
+.PHONY: all clean run time-travel
