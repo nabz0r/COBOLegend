@@ -57,6 +57,12 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 +------------------+     +------------------+     +------------------+
 |     UI.cbl       |<--->|  UTILITIES.cbl  |<--->|    Makefile     |
 +------------------+     +------------------+     +------------------+
+         ^                       ^
+         |                       |
+         v                       v
++------------------+     +----------------------+
+|  EASTER_EGGS.cbl |<--->|TERMINAL-TIME-TRAVEL.cbl|
++------------------+     +----------------------+
 ```
 
 ## 🕹️ Classes de Personnage 🕹️
@@ -76,7 +82,7 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 make
 
 # Ou pour les puristes:
-cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl
+cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl
 ```
 
 ### Lancement
@@ -103,6 +109,23 @@ make run
 +-----------------------------------+
 ```
 
+## 🎡 Terminal Time Travel 🎡
+
+Explorez l'histoire de l'informatique grâce au module Terminal Time Travel ! Cette fonctionnalité vous permet de voyager à travers cinq époques distinctes, de l'ère des cartes perforées à l'informatique en nuage moderne.
+
+### Ères Disponibles
+
+1. **Ère des Cartes Perforées (1950-1960)** - Explorez les premières machines à calcul
+2. **Ère des Mainframes (1960-1970)** - Découvrez l'âge d'or de COBOL
+3. **Ère Microinformatique (1980-1990)** - Témoins de l'essor des ordinateurs personnels
+4. **Ère Internet (1990-2000)** - Participez à la révolution du web
+5. **Ère Cloud (2010-2020)** - Explorez l'informatique moderne
+
+Chaque époque offre des défis, artefacts et quêtes uniques. Vos actions dans le passé affectent le présent et le futur de MAINFRAME-TERRA !
+
+E
+etenez les anomalies temporelles, récupérez des artefacts perdus, et découvrez l'origine véritable de votre monde digital.
+
 ## 👽 Ennemis Légendaires 👽
 
 - **Loup Binaire** - Créature sauvage qui attaque par paires
@@ -118,7 +141,6 @@ Aujourd'hui, une mystérieuse cité futuriste menace l'équilibre du monde avec 
 
 ## 🚀 Développement Futur 🚀
 
-- **Terminal Time Travel** - Voyagez entre différentes ères de l'informatique
 - **Multiplexeur de Dialogues** - Système de conversation avancé avec les PNJ
 - **Expansion VSAM** - Nouvelles zones à explorer
 - **JCL Crafting** - Créez vos propres objets grâce au Job Control Language
