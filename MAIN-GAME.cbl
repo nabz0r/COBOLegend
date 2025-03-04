@@ -39,6 +39,7 @@
           88 STATE-QUEST-LOG         VALUE 'Q'.
           88 STATE-TIME-TRAVEL       VALUE 'T'.
           88 STATE-DIALOG            VALUE 'D'.
+          88 STATE-CRAFTING          VALUE 'J'.
       
       *-----------------------------------------------------------------
       * Variables pour les choix du menu
@@ -77,6 +78,8 @@
                        PERFORM HANDLE-TIME-TRAVEL
                    WHEN STATE-DIALOG
                        PERFORM HANDLE-DIALOG
+                   WHEN STATE-CRAFTING
+                       PERFORM HANDLE-JCL-CRAFTING
                END-EVALUATE
            END-PERFORM
       
@@ -92,6 +95,7 @@
            DISPLAY "Préparation du monde de jeu..."
            DISPLAY "Initialisation du Terminal Time Travel..."
            DISPLAY "Initialisation du système de dialogue..."
+           DISPLAY "Initialisation du système de crafting JCL..."
            DISPLAY "Initialisation terminée."
            .
       
@@ -156,6 +160,7 @@
            DISPLAY "Q - Journal de quêtes"
            DISPLAY "T - Accéder au Terminal Time Travel (si disponible)"
            DISPLAY "P - Parler aux personnages à proximité"
+           DISPLAY "J - Accéder au système de crafting JCL"
            DISPLAY "X - Retourner au menu principal"
            DISPLAY SPACE
            DISPLAY "Appuyez sur ENTRÉE pour continuer..."
@@ -173,11 +178,12 @@
            DISPLAY SPACE
            DISPLAY "Une femme en tenue d'archiviste se tient près d'un bâtiment."
            DISPLAY "Un technicien travaille sur des machines à proximité."
+           DISPLAY "Un étrange terminal de fabrication est visible à l'ouest."
            DISPLAY SPACE
            DISPLAY "Que souhaitez-vous faire ?"
            DISPLAY "(N)ord, (S)ud, (E)st, (O)uest, (I)nventaire, "
                    "(C)aractéristiques, (Q)uêtes, (T)erminal,"
-                   " (P)arler, (X) Menu"
+                   " (P)arler, (J)CL-crafting, (X) Menu"
            DISPLAY "> " WITH NO ADVANCING
       
            ACCEPT PLAYER-INPUT
@@ -201,6 +207,8 @@
                    MOVE 'T' TO GAME-STATE
                WHEN "P" WHEN "p"
                    PERFORM SELECT-CHARACTER-TO-TALK
+               WHEN "J" WHEN "j"
+                   MOVE 'J' TO GAME-STATE
                WHEN "X" WHEN "x"
                    MOVE 'M' TO GAME-STATE
                WHEN OTHER
@@ -264,6 +272,9 @@
            DISPLAY SPACE
            DISPLAY "[!] Quête temporelle: Découvrir l'origine de MAINFRAME-TERRA"
            DISPLAY "    - Explorez les différentes époques via le Terminal Time Travel"
+           DISPLAY SPACE
+           DISPLAY "[ ] Quête d'artisanat: Maîtriser le JCL Crafting"
+           DISPLAY "    - Fabriquer 3 objets différents via le système JCL"
            DISPLAY SPACE
            DISPLAY "Appuyez sur ENTRÉE pour revenir au jeu..."
            ACCEPT PLAYER-INPUT
@@ -399,6 +410,49 @@
                MOVE "N" TO DIALOG-MODE
                MOVE 'G' TO GAME-STATE
            END-IF
+           .
+      
+      *-----------------------------------------------------------------
+      * Gestion du système de crafting JCL
+      *-----------------------------------------------------------------
+       HANDLE-JCL-CRAFTING.
+           DISPLAY SPACE
+           DISPLAY "Vous approchez du terminal de fabrication. Son écran affiche:"
+           DISPLAY SPACE
+           DISPLAY "***********************************************"
+           DISPLAY "*           TERMINAL DE FABRICATION           *"
+           DISPLAY "*    Créer des objets avec du code JCL       *"
+           DISPLAY "***********************************************"
+           DISPLAY SPACE
+           DISPLAY "Voulez-vous utiliser le terminal de fabrication ? (O/N)"
+           DISPLAY "> " WITH NO ADVANCING
+      
+           ACCEPT PLAYER-INPUT
+      
+           IF PLAYER-INPUT = "O" OR PLAYER-INPUT = "o"
+               DISPLAY SPACE
+               DISPLAY "Le terminal s'active..."
+               DISPLAY SPACE
+               DISPLAY "Le JCL (Job Control Language) est un langage de contrôle"
+               DISPLAY "utilisé dans les environnements mainframe pour définir les"
+               DISPLAY "paramètres d'exécution des programmes."
+               DISPLAY SPACE
+               DISPLAY "En utilisant ce terminal, vous pouvez écrire du code JCL"
+               DISPLAY "pour créer différents objets utiles dans votre aventure."
+               DISPLAY SPACE
+               DISPLAY "Note: Cette fonctionnalité est gérée par le module JCL-CRAFTING.cbl"
+               DISPLAY "et peut être compilée séparément."
+               DISPLAY SPACE
+               DISPLAY "Exemple de code JCL simple:"
+               DISPLAY "//COMPILE JOB CLASS=A,MSGCLASS=X"
+               DISPLAY "//STEP1   EXEC PGM=IEBGENER"
+               DISPLAY "//SYSIN   DD DUMMY"
+           END-IF
+      
+           DISPLAY SPACE
+           DISPLAY "Appuyez sur ENTRÉE pour revenir au jeu..."
+           ACCEPT PLAYER-INPUT
+           MOVE 'G' TO GAME-STATE
            .
       
       *-----------------------------------------------------------------
