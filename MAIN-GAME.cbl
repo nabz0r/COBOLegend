@@ -38,12 +38,21 @@
           88 STATE-CHARACTER         VALUE 'H'.
           88 STATE-QUEST-LOG         VALUE 'Q'.
           88 STATE-TIME-TRAVEL       VALUE 'T'.
+          88 STATE-DIALOG            VALUE 'D'.
       
       *-----------------------------------------------------------------
       * Variables pour les choix du menu
       *-----------------------------------------------------------------
        01 MENU-CHOICE                PIC 9(1)  VALUE 0.
        01 PLAYER-INPUT               PIC X(20) VALUE SPACES.
+      
+      *-----------------------------------------------------------------
+      * Variables pour le système de dialogue
+      *-----------------------------------------------------------------
+       01 DIALOG-ID-TO-START         PIC 9(3)  VALUE 0.
+       01 NPC-NAME                   PIC X(30) VALUE SPACES.
+       01 DIALOG-MODE                PIC X(1)  VALUE "N".
+          88 IS-IN-DIALOG            VALUE "Y".
       
        PROCEDURE DIVISION.
        MAIN-LOGIC.
@@ -66,6 +75,8 @@
                        PERFORM HANDLE-QUEST-LOG
                    WHEN STATE-TIME-TRAVEL
                        PERFORM HANDLE-TIME-TRAVEL
+                   WHEN STATE-DIALOG
+                       PERFORM HANDLE-DIALOG
                END-EVALUATE
            END-PERFORM
       
@@ -80,6 +91,7 @@
            DISPLAY "Chargement des données de jeu..."
            DISPLAY "Préparation du monde de jeu..."
            DISPLAY "Initialisation du Terminal Time Travel..."
+           DISPLAY "Initialisation du système de dialogue..."
            DISPLAY "Initialisation terminée."
            .
       
@@ -143,6 +155,7 @@
            DISPLAY "C - Afficher la fiche de personnage"
            DISPLAY "Q - Journal de quêtes"
            DISPLAY "T - Accéder au Terminal Time Travel (si disponible)"
+           DISPLAY "P - Parler aux personnages à proximité"
            DISPLAY "X - Retourner au menu principal"
            DISPLAY SPACE
            DISPLAY "Appuyez sur ENTRÉE pour continuer..."
@@ -157,9 +170,14 @@
            DISPLAY "Vous êtes dans une vaste plaine. Au loin, vous"
            DISPLAY "apercevez les contours d'une cité futuriste. Un"
            DISPLAY "étrange terminal semble briller au nord-est."
+           DISPLAY SPACE
+           DISPLAY "Une femme en tenue d'archiviste se tient près d'un bâtiment."
+           DISPLAY "Un technicien travaille sur des machines à proximité."
+           DISPLAY SPACE
            DISPLAY "Que souhaitez-vous faire ?"
            DISPLAY "(N)ord, (S)ud, (E)st, (O)uest, (I)nventaire, "
-                   "(C)aractéristiques, (Q)uêtes, (T)erminal, (X) Menu"
+                   "(C)aractéristiques, (Q)uêtes, (T)erminal,"
+                   " (P)arler, (X) Menu"
            DISPLAY "> " WITH NO ADVANCING
       
            ACCEPT PLAYER-INPUT
@@ -181,6 +199,8 @@
                    MOVE 'Q' TO GAME-STATE
                WHEN "T" WHEN "t"
                    MOVE 'T' TO GAME-STATE
+               WHEN "P" WHEN "p"
+                   PERFORM SELECT-CHARACTER-TO-TALK
                WHEN "X" WHEN "x"
                    MOVE 'M' TO GAME-STATE
                WHEN OTHER
@@ -283,6 +303,102 @@
            DISPLAY "Appuyez sur ENTRÉE pour revenir au jeu..."
            ACCEPT PLAYER-INPUT
            MOVE 'G' TO GAME-STATE
+           .
+      
+      *-----------------------------------------------------------------
+      * Sélection d'un personnage pour dialoguer
+      *-----------------------------------------------------------------
+       SELECT-CHARACTER-TO-TALK.
+           DISPLAY SPACE
+           DISPLAY "=== PERSONNAGES À PROXIMITÉ ==="
+           DISPLAY "1. Archiviste Ada"
+           DISPLAY "2. Technicien Turing"
+           DISPLAY "3. Gardien Neumann (près de la cité)"
+           DISPLAY "4. Retour"
+           DISPLAY "Avec qui souhaitez-vous parler? " WITH NO ADVANCING
+           ACCEPT MENU-CHOICE
+      
+           EVALUATE MENU-CHOICE
+               WHEN 1
+                   MOVE 1 TO DIALOG-ID-TO-START
+                   MOVE "Archiviste Ada" TO NPC-NAME
+                   MOVE "Y" TO DIALOG-MODE
+                   MOVE 'D' TO GAME-STATE
+               WHEN 2
+                   MOVE 2 TO DIALOG-ID-TO-START
+                   MOVE "Technicien Turing" TO NPC-NAME
+                   MOVE "Y" TO DIALOG-MODE
+                   MOVE 'D' TO GAME-STATE
+               WHEN 3
+                   MOVE 3 TO DIALOG-ID-TO-START
+                   MOVE "Gardien Neumann" TO NPC-NAME
+                   MOVE "Y" TO DIALOG-MODE
+                   MOVE 'D' TO GAME-STATE
+               WHEN 4
+                   CONTINUE
+               WHEN OTHER
+                   DISPLAY "Choix invalide."
+           END-EVALUATE
+           .
+      
+      *-----------------------------------------------------------------
+      * Gestion des dialogues
+      *-----------------------------------------------------------------
+       HANDLE-DIALOG.
+           DISPLAY SPACE
+           DISPLAY "Conversation avec " NPC-NAME
+           DISPLAY SPACE
+           DISPLAY "Note: Ce dialogue est géré par le module DIALOG-MULTIPLEXER.cbl"
+           DISPLAY "où les dialogues sont définis avec des options de ramification."
+           DISPLAY SPACE
+      
+           *> Simulation du comportement du module DIALOG-MULTIPLEXER
+           EVALUATE DIALOG-ID-TO-START
+               WHEN 1
+                   DISPLAY "Ada: Bonjour, voyageur. Bienvenue dans la Bibliothèque"
+                   DISPLAY "      Centrale de MAINFRAME-TERRA. Je suis Ada, gardienne"
+                   DISPLAY "      des connaissances anciennes."
+                   DISPLAY SPACE
+                   DISPLAY "1. Parlez-moi de cette bibliothèque."
+                   DISPLAY "2. Que savez-vous sur la cité futuriste?"
+                   DISPLAY "3. Je dois y aller, au revoir."
+               WHEN 2
+                   DISPLAY "Turing: *bruit de cliquetis* Oh! Vous m'avez surpris."
+                   DISPLAY "        Je ne reçois pas souvent de visiteurs ici."
+                   DISPLAY "        Je suis Turing, technicien en chef de cette"
+                   DISPLAY "        section. Que puis-je faire pour vous?"
+                   DISPLAY SPACE
+                   DISPLAY "1. Que faites-vous ici?"
+                   DISPLAY "2. J'ai trouvé cet étrange composant..."
+                   DISPLAY "3. Je ne faisais que passer."
+               WHEN 3
+                   DISPLAY "Neumann: Halte! Je suis Neumann, gardien de cette entrée."
+                   DISPLAY "         Personne ne peut passer sans démontrer sa compréhension"
+                   DISPLAY "         du langage ancien. Êtes-vous prêt à relever le défi?"
+                   DISPLAY SPACE
+                   DISPLAY "1. Je suis prêt. Quel est ce défi?"
+                   DISPLAY "2. Je reviendrai quand je serai mieux préparé."
+           END-EVALUATE
+      
+           DISPLAY SPACE
+           DISPLAY "Entrez un choix (ou 0 pour terminer le dialogue): " 
+                   WITH NO ADVANCING
+           ACCEPT MENU-CHOICE
+      
+           IF MENU-CHOICE = 0
+               MOVE "N" TO DIALOG-MODE
+               MOVE 'G' TO GAME-STATE
+           ELSE
+               DISPLAY SPACE
+               DISPLAY "Simulation de réponse au choix " MENU-CHOICE "..."
+               DISPLAY "Dans l'implémentation complète, le module DIALOG-MULTIPLEXER"
+               DISPLAY "traiterait ce choix et poursuivrait la conversation."
+               DISPLAY SPACE
+               DISPLAY "Appuyez sur ENTRÉE pour terminer le dialogue..."
+               ACCEPT PLAYER-INPUT
+               MOVE "N" TO DIALOG-MODE
+               MOVE 'G' TO GAME-STATE
+           END-IF
            .
       
       *-----------------------------------------------------------------
