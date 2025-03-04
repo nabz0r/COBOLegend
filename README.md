@@ -42,27 +42,27 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 ## ⚙️ Composants Techniques ⚙️
 
 ```
-+------------------+     +------------------+     +------------------+
-|   MAIN-GAME.cbl  |<--->|  CHARACTER.cbl  |<--->|    COMBAT.cbl   |
-+------------------+     +------------------+     +------------------+
-         ^                       ^                       ^
-         |                       |                       |
-         v                       v                       v
-+------------------+     +------------------+     +------------------+
-|    WORLD.cbl     |<--->|    QUEST.cbl    |<--->|  INVENTORY.cbl  |
-+------------------+     +------------------+     +------------------+
-         ^                       ^                       ^
-         |                       |                       |
-         v                       v                       v
-+------------------+     +------------------+     +------------------+
-|     UI.cbl       |<--->|  UTILITIES.cbl  |<--->|    Makefile     |
-+------------------+     +------------------+     +------------------+
-         ^                       ^
-         |                       |
-         v                       v
-+------------------+     +----------------------+
-|  EASTER_EGGS.cbl |<--->|TERMINAL-TIME-TRAVEL.cbl|
-+------------------+     +----------------------+
++--------------------+     +--------------------+     +------------------+
+|   MAIN-GAME.cbl    |<--->|   CHARACTER.cbl   |<--->|   COMBAT.cbl    |
++--------------------+     +--------------------+     +------------------+
+         ^                          ^                        ^
+         |                          |                        |
+         v                          v                        v
++--------------------+     +--------------------+     +------------------+
+|     WORLD.cbl      |<--->|     QUEST.cbl     |<--->|  INVENTORY.cbl  |
++--------------------+     +--------------------+     +------------------+
+         ^                          ^                        ^
+         |                          |                        |
+         v                          v                        v
++--------------------+     +--------------------+     +------------------+
+| DIALOG-MULTIPLEXER |<--->|  UTILITIES.cbl    |<--->|     UI.cbl      |
++--------------------+     +--------------------+     +------------------+
+                                    ^                        ^
+                                    |                        |
+                                    v                        v
+                           +--------------------+     +------------------+
+                           |TERMINAL-TIME-TRAVEL|     |  EASTER_EGGS.cbl|
+                           +--------------------+     +------------------+
 ```
 
 ## 🕹️ Classes de Personnage 🕹️
@@ -78,11 +78,11 @@ Imaginez un monde où les mainframes sont des cités vivantes, les bugs sont des
 ### Compilation
 
 ```bash
-# Exécutez cet incantation ancestrale pour assembler le jeu:
+# Exécutez cette incantation ancestrale pour assembler le jeu:
 make
 
 # Ou pour les puristes:
-cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl
+cobc -x -o cobolegend MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl
 ```
 
 ### Lancement
@@ -105,6 +105,8 @@ make run
 | I - Inventaire                   |
 | C - Caractéristiques             |
 | Q - Quêtes                       |
+| T - Terminal temporel            |
+| P - Parler aux personnages       |
 | X - Menu principal               |
 +-----------------------------------+
 ```
@@ -123,27 +125,33 @@ Explorez l'histoire de l'informatique grâce au module Terminal Time Travel ! Ce
 
 Chaque époque offre des défis, artefacts et quêtes uniques. Vos actions dans le passé affectent le présent et le futur de MAINFRAME-TERRA !
 
-E
-etenez les anomalies temporelles, récupérez des artefacts perdus, et découvrez l'origine véritable de votre monde digital.
+## 💬 Système de Dialogue 💬
+
+Interagissez avec les personnages de MAINFRAME-TERRA grâce au Multiplexeur de Dialogues, un système conversationnel avancé qui permet :
+
+- Des dialogues ramifiés avec plusieurs choix de réponse
+- Des réponses conditionnelles basées sur vos actions antérieures
+- Des conséquences narratives qui affectent l'histoire et les relations
+- Des quêtes et récompenses obtenues via les conversations
+
+PNJ importants :
+- **Archiviste Ada** - Gardienne des connaissances de la Bibliothèque Centrale
+- **Technicien Turing** - Spécialiste des systèmes qui maintient les machines
+- **Gardien Neumann** - Protecteur des portes de la cité futuriste
+- **Voyageur Temporel** - Mystérieux visiteur avec des connaissances du futur
 
 ## 👽 Ennemis Légendaires 👽
 
 - **Loup Binaire** - Créature sauvage qui attaque par paires
-- **Golem de Données** - Monstre massif composé de dossiers corrigds
+- **Golem de Données** - Monstre massif composé de dossiers corrompus
 - **Bug Fatal** - Apparition cauchemardesque qui fait planter les systèmes
 - **ABEND Spectre** - Entité qui termine anormalement toute chose qu'elle touche
 
-## 📜 Histoire de MAINFRAME-TERRA 📜
-
-Il y a longtemps, au temps des cartes perforées et des bandes magnétiques, les Anciens Programmeurs ont créé les premiers mainframes. Ces machines, alimentées par le langage mystique du COBOL, ont évolué au fil du temps jusqu'à former leur propre civilisation: MAINFRAME-TERRA.
-
-Aujourd'hui, une mystérieuse cité futuriste menace l'équilibre du monde avec sa technologie avancée. Seul un véritable Héros du COBOL peut découvrir ses secrets et sauver MAINFRAME-TERRA!
-
 ## 🚀 Développement Futur 🚀
 
-- **Multiplexeur de Dialogues** - Système de conversation avancé avec les PNJ
-- **Expansion VSAM** - Nouvelles zones à explorer
+- **Expansion VSAM** - Nouvelles zones à explorer avec des environnements uniques
 - **JCL Crafting** - Créez vos propres objets grâce au Job Control Language
+- **Système de sauvegarde** - Stockage et chargement de parties via des "checkpoints"
 
 ## 🅰️ À Propos 🅰️
 
