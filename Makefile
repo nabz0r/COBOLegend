@@ -8,7 +8,7 @@ COBC_FLAGS = -x -Wall
 EXE = cobolegend
 
 # Fichiers sources
-SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl
+SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl JCL-CRAFTING.cbl
 
 # Règle par défaut
 all: $(EXE)
@@ -33,4 +33,8 @@ time-travel: TERMINAL-TIME-TRAVEL.cbl
 dialog: DIALOG-MULTIPLEXER.cbl
 	$(COBC) $(COBC_FLAGS) -o dialog-multiplexer $<
 
-.PHONY: all clean run time-travel dialog
+# Compilation du module de crafting JCL uniquement
+crafting: JCL-CRAFTING.cbl
+	$(COBC) $(COBC_FLAGS) -o jcl-crafting $<
+
+.PHONY: all clean run time-travel dialog crafting
