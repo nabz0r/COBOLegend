@@ -37,6 +37,7 @@
           88 STATE-INVENTORY         VALUE 'I'.
           88 STATE-CHARACTER         VALUE 'H'.
           88 STATE-QUEST-LOG         VALUE 'Q'.
+          88 STATE-TIME-TRAVEL       VALUE 'T'.
       
       *-----------------------------------------------------------------
       * Variables pour les choix du menu
@@ -63,6 +64,8 @@
                        PERFORM HANDLE-CHARACTER-SCREEN
                    WHEN STATE-QUEST-LOG
                        PERFORM HANDLE-QUEST-LOG
+                   WHEN STATE-TIME-TRAVEL
+                       PERFORM HANDLE-TIME-TRAVEL
                END-EVALUATE
            END-PERFORM
       
@@ -76,6 +79,7 @@
            DISPLAY "Initialisation de COBOLegend..."
            DISPLAY "Chargement des données de jeu..."
            DISPLAY "Préparation du monde de jeu..."
+           DISPLAY "Initialisation du Terminal Time Travel..."
            DISPLAY "Initialisation terminée."
            .
       
@@ -138,6 +142,7 @@
            DISPLAY "I - Ouvrir l'inventaire"
            DISPLAY "C - Afficher la fiche de personnage"
            DISPLAY "Q - Journal de quêtes"
+           DISPLAY "T - Accéder au Terminal Time Travel (si disponible)"
            DISPLAY "X - Retourner au menu principal"
            DISPLAY SPACE
            DISPLAY "Appuyez sur ENTRÉE pour continuer..."
@@ -150,10 +155,11 @@
        HANDLE-GAMEPLAY.
            DISPLAY SPACE
            DISPLAY "Vous êtes dans une vaste plaine. Au loin, vous"
-           DISPLAY "apercevez les contours d'une cité futuriste."
+           DISPLAY "apercevez les contours d'une cité futuriste. Un"
+           DISPLAY "étrange terminal semble briller au nord-est."
            DISPLAY "Que souhaitez-vous faire ?"
            DISPLAY "(N)ord, (S)ud, (E)st, (O)uest, (I)nventaire, "
-                   "(C)aractéristiques, (Q)uêtes, (X) Menu"
+                   "(C)aractéristiques, (Q)uêtes, (T)erminal, (X) Menu"
            DISPLAY "> " WITH NO ADVANCING
       
            ACCEPT PLAYER-INPUT
@@ -173,6 +179,8 @@
                    MOVE 'H' TO GAME-STATE
                WHEN "Q" WHEN "q"
                    MOVE 'Q' TO GAME-STATE
+               WHEN "T" WHEN "t"
+                   MOVE 'T' TO GAME-STATE
                WHEN "X" WHEN "x"
                    MOVE 'M' TO GAME-STATE
                WHEN OTHER
@@ -233,6 +241,44 @@
            DISPLAY SPACE
            DISPLAY "[ ] Quête secondaire: Collecter 5 fragments de code"
            DISPLAY "    - Fragments trouvés: 0/5"
+           DISPLAY SPACE
+           DISPLAY "[!] Quête temporelle: Découvrir l'origine de MAINFRAME-TERRA"
+           DISPLAY "    - Explorez les différentes époques via le Terminal Time Travel"
+           DISPLAY SPACE
+           DISPLAY "Appuyez sur ENTRÉE pour revenir au jeu..."
+           ACCEPT PLAYER-INPUT
+           MOVE 'G' TO GAME-STATE
+           .
+      
+      *-----------------------------------------------------------------
+      * Gestion du Terminal Time Travel
+      *-----------------------------------------------------------------
+       HANDLE-TIME-TRAVEL.
+           DISPLAY SPACE
+           DISPLAY "Vous vous approchez du terminal étrange qui émet"
+           DISPLAY "une lueur bleutée. L'interface affiche:"
+           DISPLAY SPACE
+           DISPLAY "***********************************************"
+           DISPLAY "*              CHRONOTERMINAL                 *"
+           DISPLAY "*   Portail vers les epoques informatiques   *"
+           DISPLAY "***********************************************"
+           DISPLAY SPACE
+           DISPLAY "Voulez-vous activer le terminal ? (O/N)"
+           DISPLAY "> " WITH NO ADVANCING
+      
+           ACCEPT PLAYER-INPUT
+      
+           IF PLAYER-INPUT = "O" OR PLAYER-INPUT = "o"
+               DISPLAY SPACE
+               DISPLAY "Le terminal s'anime..."
+               DISPLAY SPACE
+               DISPLAY "Veuillez consulter le module Terminal Time Travel"
+               DISPLAY "pour explorer les différentes époques informatiques."
+               DISPLAY SPACE
+               DISPLAY "Note: Cette fonctionnalité est gérée par le module TERMINAL-TIME-TRAVEL.cbl"
+               DISPLAY "et peut être compilée séparément avec: make time-travel"
+           END-IF
+      
            DISPLAY SPACE
            DISPLAY "Appuyez sur ENTRÉE pour revenir au jeu..."
            ACCEPT PLAYER-INPUT
