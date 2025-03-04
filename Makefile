@@ -8,7 +8,7 @@ COBC_FLAGS = -x -Wall
 EXE = cobolegend
 
 # Fichiers sources
-SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl
+SRC_FILES = MAIN-GAME.cbl CHARACTER.cbl COMBAT.cbl WORLD.cbl QUEST.cbl INVENTORY.cbl UI.cbl UTILITIES.cbl TERMINAL-TIME-TRAVEL.cbl DIALOG-MULTIPLEXER.cbl
 
 # Règle par défaut
 all: $(EXE)
@@ -29,4 +29,8 @@ run: $(EXE)
 time-travel: TERMINAL-TIME-TRAVEL.cbl
 	$(COBC) $(COBC_FLAGS) -o terminal-time-travel $<
 
-.PHONY: all clean run time-travel
+# Compilation du module de dialogue uniquement
+dialog: DIALOG-MULTIPLEXER.cbl
+	$(COBC) $(COBC_FLAGS) -o dialog-multiplexer $<
+
+.PHONY: all clean run time-travel dialog
