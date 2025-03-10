@@ -6,7 +6,7 @@
       *****************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. UTILITIES.
-       AUTHOR. CLAUDE.
+       AUTHOR. NABZ0R.
        DATE-WRITTEN. 2025-03-04.
       
        DATA DIVISION.
