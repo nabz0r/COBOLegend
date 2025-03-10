@@ -6,7 +6,7 @@
       *****************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. UI-SYSTEM.
-       AUTHOR. CLAUDE.
+       AUTHOR. NABZ0R.
        DATE-WRITTEN. 2025-03-04.
       
        ENVIRONMENT DIVISION.
